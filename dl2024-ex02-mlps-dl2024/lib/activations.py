@@ -65,7 +65,7 @@ class ReLU(Module):
         self.input_cache = z
         # START TODO #################
         # Use e.g. np.maximum to implement this function efficiently.
-        raise NotImplementedError
+        return np.maximum(z, 0)
         # END TODO###################
 
     def backward(self, grad: np.ndarray) -> np.ndarray:
@@ -104,7 +104,8 @@ class Softmax(Module):
         # First, shift the input for numerical stability by subtracting the maximum value of the input from all inputs.
         # This will not change the solution (since softmax(x) = softmax(x + c) for all scalars c),
         # but make the calculation numerically stable.
-        raise NotImplementedError
+        z = z - np.max(z, axis=reduction_axes, keepdims=True)
+        h = np.exp(z) / np.sum(np.exp(z), axis=reduction_axes, keepdims=True)
         # END TODO###################
         return h
 

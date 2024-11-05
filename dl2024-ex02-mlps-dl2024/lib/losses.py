@@ -38,7 +38,7 @@ class CrossEntropyLoss(Module):
         self.input_cache = preds, labels
         # START TODO #################
         # compute the loss and average it over the batch.
-        raise NotImplementedError
+        return -np.sum(labels * np.log(preds)) / preds.shape[0]
         # END TODO ##################
 
     def backward(self, grad: np.ndarray) -> np.ndarray:

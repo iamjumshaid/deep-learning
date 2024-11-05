@@ -38,7 +38,7 @@ class Linear(Module):
         self.input_cache = x
         # START TODO #################
         # Remember: Access weight data through self.W.data
-        raise NotImplementedError
+        z = x @ self.W.data + self.b.data
         # END TODO ##################
         return z
 
@@ -62,7 +62,7 @@ class Linear(Module):
         """
         # START TODO #################
         # Return all parameters of Linear
-        raise NotImplementedError
+        return [self.W, self.b]
         # END TODO ##################
 
 
@@ -98,7 +98,8 @@ class Sequential(Module):
         """
         # START TODO #################
         # Remember: module(x) is equivalent to module.forward(x)
-        raise NotImplementedError
+        for module in self.modules:
+            x = module(x)
         # END TODO ##################
         return x
 
