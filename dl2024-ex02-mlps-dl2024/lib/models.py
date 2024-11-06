@@ -19,14 +19,23 @@ def create_2unit_net() -> Sequential:
     """
     # START TODO #################
     # Define the model here
-    raise NotImplementedError
+    model = Sequential(
+        Linear(2, 2),
+        ReLU(),
+        Linear(2, 2)
+    )
     # END TODO ##################
 
     # START TODO #################
     # Change the model weights according to the assignment sheet
     # Hint: You can access the parameters using model.parameters() which contains a list of Parameter objects
     # e.g. model.parameters()[0].data contains the weights of the first layer
-    raise NotImplementedError
+
+    model.parameters()[0].data = np.array([[3.21, -2.34], [3.21, -2.34]])  # w of first layer
+    model.parameters()[1].data = np.array([-3.21, 2.34])  # b of first layer
+
+    model.parameters()[2].data = np.array([[3.19, -2.68], [4.69, -3.44]])  # w of second layer
+    model.parameters()[3].data = np.array([-4.08, 4.42])  # b of second layer
     # END TODO ##################
 
     return model
@@ -40,12 +49,20 @@ def create_3unit_net() -> Sequential:
     """
     # START TODO #################
     # Define the model here
-    raise NotImplementedError
+    model = Sequential(
+        Linear(2, 3),
+        ReLU(),
+        Linear(3, 2)
+    )
     # END TODO ##################
 
     # START TODO #################
     # change the model weights
-    raise NotImplementedError
+    model.parameters()[0].data = np.array([[3.21, -2.34], [3.21, -2.34]])  # w of first layer
+    model.parameters()[1].data = np.array([-3.21, 2.34])  # b of first layer
+
+    model.parameters()[2].data = np.array([[3.19, -2.68], [4.69, -3.44]])  # w of second layer
+    model.parameters()[3].data = np.array([-4.08, 4.42])  # b of second layer
     # END TODO ##################
 
     return model
@@ -70,7 +87,7 @@ def run_model_on_xor(model: Module, verbose: bool = True) -> Tuple[np.ndarray, f
 
     # START TODO #################
     # propagate the input data (stored in the imported variable X) through the model.
-    raise NotImplementedError
+    prediction = model(X)
     # END TODO ##################
 
     if verbose:
@@ -87,7 +104,7 @@ def run_model_on_xor(model: Module, verbose: bool = True) -> Tuple[np.ndarray, f
     # START TODO #################
     # Use the one_hot_encoding function (imported from file lib/utilites.py) on the labels to convert them to
     # one-hot encoding. The labels are stored in the imported variable y.
-    raise NotImplementedError
+    Y_onehot = one_hot_encoding(y, 2)
     # END TODO ##################
 
     if verbose:
@@ -103,7 +120,7 @@ def run_model_on_xor(model: Module, verbose: bool = True) -> Tuple[np.ndarray, f
     # START TODO #################
     # given the true labels Y and the predictions,
     # compute the cross entropy loss defined above
-    raise NotImplementedError
+    loss = loss_fn(prediction, Y_onehot)
     # END TODO ##################
 
     if verbose:
